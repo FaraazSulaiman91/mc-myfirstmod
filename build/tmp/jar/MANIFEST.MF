@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: MyFirstMod
+Implementation-Version: 1.0
+Specification-Vendor: myfirstmodsareus
+Specification-Title: myfirstmod
+Implementation-Timestamp: 2020-07-25T21:12:28+0200
+Specification-Version: 1
+Implementation-Vendor: myfirstmodsareus
+
