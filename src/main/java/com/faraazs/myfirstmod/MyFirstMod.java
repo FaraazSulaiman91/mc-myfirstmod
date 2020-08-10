@@ -1,16 +1,13 @@
 package com.faraazs.myfirstmod;
 
+import com.faraazs.myfirstmod.block.BlockRegistry;
+import com.faraazs.myfirstmod.item.ItemRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.material.Material;
-import net.minecraft.client.tutorial.Tutorial;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -18,8 +15,6 @@ import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -33,9 +28,6 @@ public class MyFirstMod
 	private static final Logger LOGGER = LogManager.getLogger();
 	public static final String MODID = "myfirstmod";
 
-	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MyFirstMod.MODID);
-	public static final RegistryObject<Item> COIN = MyFirstMod.ITEMS.register("coin", () -> new Item(new Item.Properties().group(ItemGroup.MISC)));
-
 	public MyFirstMod()
 	{
 		// Register the setup method for modloading
@@ -47,7 +39,8 @@ public class MyFirstMod
 		// Register the doClientStuff method for modloading
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
-		ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
+		BlockRegistry.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
+		ItemRegistry.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
 
 		// Register ourselves for server and other game events we are interested in
 		MinecraftForge.EVENT_BUS.register(this);
